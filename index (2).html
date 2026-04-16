@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Yehia Kashef — QA Engineer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:       #0c0f0a;
+  --surface:  #131710;
+  --card:     #181d14;
+  --border:   #252d1f;
+  --accent:   #8db945;
+  --accent2:  #c5e668;
+  --amber:    #e8b84b;
+  --red:      #e05c5c;
+  --blue:     #5ca8e0;
+  --purple:   #a97cf8;
+  --text:     #e8ead4;
+  --muted:    #6b7560;
+  --serif:    'DM Serif Display', serif;
+  --mono:     'DM Mono', monospace;
+  --sans:     'Outfit', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 100; opacity: 0.35;
+}
+
+/* HERO */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+.hero-left { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+.hero-right { position: relative; overflow: hidden; }
+.hero-right::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 60% 40%, rgba(141,185,69,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 40% at 80% 80%, rgba(197,230,104,0.07) 0%, transparent 60%);
+}
+.grid-lines { position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(141,185,69,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(141,185,69,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.hero-code {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px 32px; font-family: var(--mono); font-size: 0.75rem; line-height: 1.8;
+  width: 420px; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  animation: floatCard 4s ease-in-out infinite;
+}
+@keyframes floatCard { 0%,100%{transform:translate(-50%,-50%) translateY(0)} 50%{transform:translate(-50%,-50%) translateY(-12px)} }
+.hero-code .dot-row { display:flex; gap:6px; margin-bottom:16px; }
+.dot { width:10px; height:10px; border-radius:50%; }
+.dot.r{background:#e05c5c} .dot.y{background:#e8b84b} .dot.g{background:#8db945}
+.c-green{color:var(--accent2)} .c-amber{color:var(--amber)} .c-blue{color:var(--blue)} .c-muted{color:var(--muted)} .c-text{color:var(--text)}
+
+.tag-pill { display:inline-block; background:rgba(141,185,69,0.12); border:1px solid rgba(141,185,69,0.3); color:var(--accent2); padding:4px 12px; border-radius:20px; font-size:0.72rem; font-family:var(--mono); letter-spacing:0.08em; margin-bottom:24px; }
+.hero-title { font-family:var(--serif); font-size:clamp(2.8rem,5vw,4.2rem); line-height:1.1; margin-bottom:20px; }
+.hero-title em { font-style:italic; color:var(--accent); }
+.hero-sub { font-size:1rem; color:var(--muted); line-height:1.7; max-width:440px; margin-bottom:40px; }
+.hero-stats { display:flex; gap:36px; margin-bottom:44px; }
+.stat { border-left:2px solid var(--border); padding-left:16px; }
+.stat-num { font-family:var(--serif); font-size:2rem; color:var(--accent2); line-height:1; }
+.stat-label { font-size:0.75rem; color:var(--muted); margin-top:4px; }
+.btn-row { display:flex; gap:12px; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:8px; font-family:var(--sans); font-size:0.85rem; font-weight:500; cursor:pointer; text-decoration:none; transition:all 0.2s; border:none; }
+.btn-primary { background:var(--accent); color:#0c0f0a; }
+.btn-primary:hover { background:var(--accent2); transform:translateY(-2px); }
+.btn-outline { background:transparent; color:var(--text); border:1px solid var(--border); }
+.btn-outline:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+
+/* SECTIONS */
+section { padding: 90px 60px; max-width: 1200px; margin: 0 auto; }
+.section-label { font-family:var(--mono); font-size:0.7rem; letter-spacing:0.15em; color:var(--accent); text-transform:uppercase; margin-bottom:12px; }
+.section-title { font-family:var(--serif); font-size:clamp(2rem,3.5vw,3rem); line-height:1.15; margin-bottom:48px; }
+.divider { height:1px; background:linear-gradient(90deg,var(--border),transparent); max-width:1200px; margin:0 auto; }
+
+/* PROJECT CARDS */
+.project-card { background:var(--card); border:1px solid var(--border); border-radius:20px; overflow:hidden; margin-bottom:20px; transition:border-color 0.2s; }
+.project-card:hover { border-color: rgba(141,185,69,0.2); }
+.project-header { padding:28px 32px; display:flex; align-items:flex-start; gap:18px; cursor:pointer; transition:background 0.2s; }
+.project-header:hover { background:rgba(141,185,69,0.03); }
+.project-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+.icon-green  { background:rgba(141,185,69,0.15); border:1px solid rgba(141,185,69,0.3); }
+.icon-blue   { background:rgba(92,168,224,0.15);  border:1px solid rgba(92,168,224,0.3); }
+.icon-amber  { background:rgba(232,184,75,0.15);  border:1px solid rgba(232,184,75,0.3); }
+.icon-purple { background:rgba(169,124,248,0.15); border:1px solid rgba(169,124,248,0.3); }
+.project-meta { flex:1; }
+.project-name { font-size:1.1rem; font-weight:600; margin-bottom:5px; }
+.project-desc { font-size:0.83rem; color:var(--muted); line-height:1.6; }
+.project-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.ptag { font-family:var(--mono); font-size:0.67rem; padding:3px 10px; border-radius:4px; letter-spacing:0.04em; }
+.ptag-green  { background:rgba(141,185,69,0.12);  color:var(--accent2); }
+.ptag-blue   { background:rgba(92,168,224,0.12);  color:var(--blue); }
+.ptag-amber  { background:rgba(232,184,75,0.12);  color:var(--amber); }
+.ptag-red    { background:rgba(224,92,92,0.12);   color:var(--red); }
+.ptag-purple { background:rgba(169,124,248,0.12); color:var(--purple); }
+.project-chevron { color:var(--muted); font-size:1.2rem; transition:transform 0.25s; margin-top:4px; }
+.project-card.open .project-chevron { transform:rotate(90deg); }
+.project-body { display:none; padding:0 32px 28px; border-top:1px solid var(--border); }
+.project-card.open .project-body { display:block; }
+
+/* STATS GRID */
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:20px; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; text-align:center; }
+.stat-card .num { font-family:var(--serif); font-size:2rem; line-height:1; margin-bottom:5px; }
+.stat-card .lbl { font-size:0.72rem; color:var(--muted); }
+.num-green{color:var(--accent2)} .num-amber{color:var(--amber)} .num-red{color:var(--red)} .num-blue{color:var(--blue)} .num-purple{color:var(--purple)}
+
+/* FINDINGS TABLE */
+.findings-title { font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase; margin:20px 0 12px; }
+.findings-table { width:100%; border-collapse:collapse; font-size:0.81rem; }
+.findings-table th { text-align:left; padding:10px 12px; font-family:var(--mono); font-size:0.67rem; letter-spacing:0.08em; color:var(--muted); border-bottom:1px solid var(--border); }
+.findings-table td { padding:11px 12px; border-bottom:1px solid rgba(37,45,31,0.6); vertical-align:top; line-height:1.5; }
+.findings-table tr:last-child td { border-bottom:none; }
+.findings-table tr:hover td { background:rgba(141,185,69,0.02); }
+.sev-high{color:var(--red);font-weight:600;font-family:var(--mono);font-size:0.71rem}
+.sev-med {color:var(--amber);font-weight:600;font-family:var(--mono);font-size:0.71rem}
+.sev-low {color:var(--accent2);font-weight:600;font-family:var(--mono);font-size:0.71rem}
+.status-fixed{background:rgba(141,185,69,0.12);color:var(--accent2);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:0.67rem}
+.status-open {background:rgba(224,92,92,0.12); color:var(--red);   padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:0.67rem}
+
+/* TWO COL */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px; }
+.col-box { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; }
+.col-box-title { font-size:0.78rem; font-weight:600; margin-bottom:10px; }
+.col-box ul { list-style:none; font-size:0.77rem; color:var(--muted); line-height:2.1; }
+.col-box ul li::before { content:"+ "; color:var(--accent); }
+
+/* DELIVERABLES */
+.deliverables { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+.deliverable-tag { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:8px 14px; font-size:0.78rem; color:var(--muted); display:flex; align-items:center; gap:6px; }
+.deliverable-tag span { color:var(--accent); }
+
+/* CODE BLOCK */
+.code-block { background:#0d1109; border:1px solid var(--border); border-radius:10px; padding:18px; font-family:var(--mono); font-size:0.76rem; line-height:1.9; margin-top:6px; }
+
+/* SKILLS */
+.skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.skill-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:26px; transition:border-color 0.2s,transform 0.2s; }
+.skill-card:hover { border-color:rgba(141,185,69,0.3); transform:translateY(-4px); }
+.skill-icon { font-size:26px; margin-bottom:12px; }
+.skill-name { font-weight:600; font-size:0.93rem; margin-bottom:7px; }
+.skill-desc { font-size:0.79rem; color:var(--muted); line-height:1.6; }
+.skill-bars { margin-top:14px; display:flex; flex-direction:column; gap:7px; }
+.skill-bar-row { display:flex; align-items:center; gap:10px; }
+.skill-bar-label { font-family:var(--mono); font-size:0.64rem; color:var(--muted); width:82px; flex-shrink:0; }
+.skill-bar-track { flex:1; height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
+.skill-bar-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); border-radius:2px; }
+
+/* PROCESS */
+.process-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; margin-top:16px; }
+.process-steps::before { content:''; position:absolute; top:28px; left:10%; right:10%; height:1px; background:linear-gradient(90deg,transparent,var(--border),var(--accent),var(--border),transparent); }
+.process-step { display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 10px; position:relative; }
+.step-circle { width:56px; height:56px; border-radius:50%; background:var(--card); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:0.8rem; color:var(--accent); margin-bottom:14px; position:relative; z-index:1; transition:border-color 0.2s,background 0.2s; }
+.process-step:hover .step-circle { border-color:var(--accent); background:rgba(141,185,69,0.1); }
+.step-title { font-size:0.82rem; font-weight:600; margin-bottom:5px; }
+.step-desc  { font-size:0.71rem; color:var(--muted); line-height:1.5; }
+
+/* CTA */
+.cta-section { text-align:center; padding:90px 60px; background:var(--card); border-top:1px solid var(--border); border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
+.cta-section::before { content:''; position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:600px; height:400px; background:radial-gradient(ellipse,rgba(141,185,69,0.08) 0%,transparent 70%); pointer-events:none; }
+.cta-section p { color:var(--muted); max-width:500px; margin:0 auto 40px; line-height:1.7; }
+
+footer { padding:40px 60px; display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; font-size:0.77rem; color:var(--muted); }
+
+/* ANIMATIONS */
+.fade-up { opacity:0; transform:translateY(30px); transition:opacity 0.6s ease,transform 0.6s ease; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr} .hero-right{display:none} .hero-left{padding:60px 32px}
+  section{padding:60px 32px} .skills-grid{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr} .process-steps::before{display:none}
+  .stats-grid{grid-template-columns:repeat(2,1fr)} .two-col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="tag-pill">QA ENGINEER &nbsp;&middot;&nbsp; API TESTING &nbsp;&middot;&nbsp; POS &nbsp;&middot;&nbsp; MANUAL &amp; AUTOMATION</div>
+    <h1 class="hero-title">Finding bugs<br>before <em>your users</em><br>do.</h1>
+    <p class="hero-sub">I specialise in REST API testing, POS system validation, and Postman automation. I build structured, repeatable test suites that catch real issues across fintech, transport, and e-commerce platforms.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Projects</div></div>
+      <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Bugs Found</div></div>
+      <div class="stat"><div class="stat-num">39+</div><div class="stat-label">Test Cases</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">CRUD Coverage</div></div>
+    </div>
+    <div class="btn-row">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#skills"   class="btn btn-outline">My Skills</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="grid-lines"></div>
+    <div class="hero-code">
+      <div class="dot-row"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+      <div><span class="c-muted">// POST Create — dynamic test script</span></div>
+      <div><span class="c-blue">const</span> <span class="c-text">body</span> = <span class="c-amber">JSON.parse</span>(</div>
+      <div>&nbsp;&nbsp;<span class="c-green">pm.request.body.raw</span></div>
+      <div>);</div>
+      <div>&nbsp;</div>
+      <div><span class="c-green">pm.test</span>(<span class="c-amber">'TC-016 | name matches'</span>, () => {</div>
+      <div>&nbsp;&nbsp;<span class="c-blue">const</span> <span class="c-text">json</span> = <span class="c-green">pm.response.json</span>();</div>
+      <div>&nbsp;&nbsp;<span class="c-green">pm.expect</span>(<span class="c-text">json.name</span>)</div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;.<span class="c-green">to.eql</span>(<span class="c-text">body.name</span>);</div>
+      <div>});</div>
+      <div>&nbsp;</div>
+      <div><span class="c-muted">// PASSED &nbsp; 201 Created &nbsp; 15ms</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Portfolio</div>
+  <h2 class="section-title">Projects</h2>
+
+  <!-- PROJECT 1: Django REST API -->
+  <div class="project-card open fade-up" id="pc1">
+    <div class="project-header" onclick="toggleCard('pc1')">
+      <div class="project-icon icon-green">&#128300;</div>
+      <div class="project-meta">
+        <div class="project-name">Django REST API — Full CRUD Test Suite</div>
+        <div class="project-desc">End-to-end API testing of a Django REST Framework Products API. Built a fully automated Postman collection with dynamic variable chaining, 39 test cases, and discovered 6 bugs across PUT and DELETE endpoints.</div>
+        <div class="project-tags">
+          <span class="ptag ptag-green">Django REST Framework</span>
+          <span class="ptag ptag-blue">Postman Automation</span>
+          <span class="ptag ptag-amber">Python 3.11</span>
+          <span class="ptag ptag-red">Bug Hunting</span>
+          <span class="ptag ptag-green">API Testing</span>
+        </div>
+      </div>
+      <div class="project-chevron">&#8250;</div>
+    </div>
+    <div class="project-body">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num num-green">39</div><div class="lbl">Test Cases</div></div>
+        <div class="stat-card"><div class="num num-red">6</div><div class="lbl">Bugs Found</div></div>
+        <div class="stat-card"><div class="num num-amber">5</div><div class="lbl">Endpoints</div></div>
+        <div class="stat-card"><div class="num num-blue">100%</div><div class="lbl">CRUD Coverage</div></div>
+      </div>
+
+      <div class="findings-title">Bugs Found</div>
+      <table class="findings-table">
+        <thead><tr><th>#</th><th>Endpoint</th><th>Description</th><th>Severity</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:var(--mono);font-size:0.71rem;color:var(--muted)">BUG-001</td><td><code style="font-family:var(--mono);font-size:0.71rem;color:var(--accent2)">PUT /update_product/</code></td><td>UpdateProductSerializer missing Meta class — 500 on every PUT</td><td><span class="sev-high">HIGH</span></td><td><span class="status-fixed">FIXED</span></td></tr>
+          <tr><td style="font-family:var(--mono);font-size:0.71rem;color:var(--muted)">BUG-002</td><td><code style="font-family:var(--mono);font-size:0.71rem;color:var(--accent2)">PUT /update_product/</code></td><td>Response(serializer) instead of Response(serializer.data) — 500</td><td><span class="sev-high">HIGH</span></td><td><span class="status-fixed">FIXED</span></td></tr>
+          <tr><td style="font-family:var(--mono);font-size:0.71rem;color:var(--muted)">BUG-003</td><td><code style="font-family:var(--mono);font-size:0.71rem;color:var(--accent2)">PUT /update_product/</code></td><td>PUT accepted partial body without validation — REST semantics violated</td><td><span class="sev-med">MEDIUM</span></td><td><span class="status-fixed">FIXED</span></td></tr>
+          <tr><td style="font-family:var(--mono);font-size:0.71rem;color:var(--muted)">BUG-004</td><td><code style="font-family:var(--mono);font-size:0.71rem;color:var(--accent2)">DELETE /delete/</code></td><td>Invalid ORM lookup stock__=0 caused FieldError — DELETE completely broken</td><td><span class="sev-high">HIGH</span></td><td><span class="status-fixed">FIXED</span></td></tr>
+          <tr><td style="font-family:var(--mono);font-size:0.71rem;color:var(--muted)">BUG-005</td><td><code style="font-family:var(--mono);font-size:0.71rem;color:var(--accent2)">DELETE /delete/</code></td><td>Successful delete returned HTTP_404 instead of HTTP_200</td><td><span class="sev-med">MEDIUM</span></td><td><span class="status-fixed">FIXED</span></td></tr>
+          <tr><td style="font-family:var(--mono);font-size:0.71rem;color:var(--muted)">BUG-006</td><td><code style="font-family:var(--mono);font-size:0.71rem;color:var(--accent2)">POST /Create/</code></td><td>Negative prices accepted — no validation on price or stock fields</td><td><span class="sev-med">MEDIUM</span></td><td><span class="status-fixed">FIXED</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="findings-title" style="margin-top:22px">Automation Highlights</div>
+      <div class="code-block">
+        <span style="color:var(--muted)">// Body parsed at runtime — zero hardcoded values anywhere</span><br>
+        <span style="color:var(--blue)">const</span> <span style="color:var(--text)">body</span> = <span style="color:var(--amber)">JSON.parse</span>(<span style="color:var(--accent2)">pm.request.body.raw</span>);<br>
+        <span style="color:var(--accent2)">pm.expect</span>(<span style="color:var(--text)">json.name</span>).<span style="color:var(--accent2)">to.eql</span>(<span style="color:var(--text)">body.name</span>);<br><br>
+        <span style="color:var(--muted)">// DELETE auto-creates a fresh product — runs solo, no POST needed</span><br>
+        <span style="color:var(--accent2)">pm.sendRequest</span>({ url: baseUrl + <span style="color:var(--amber)">'/api/product/Create/'</span>, method: <span style="color:var(--amber)">'POST'</span>, ... });
+      </div>
+
+      <div class="findings-title" style="margin-top:22px">Deliverables</div>
+      <div class="deliverables">
+        <div class="deliverable-tag"><span>+</span> Postman Collection (v6, 39 test cases)</div>
+        <div class="deliverable-tag"><span>+</span> Bug Report (6 defects)</div>
+        <div class="deliverable-tag"><span>+</span> Dynamic test scripts</div>
+        <div class="deliverable-tag"><span>+</span> Full CRUD coverage</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 2: Bill Payment POS -->
+  <div class="project-card fade-up" id="pc2" style="transition-delay:0.1s">
+    <div class="project-header" onclick="toggleCard('pc2')">
+      <div class="project-icon icon-amber">&#128179;</div>
+      <div class="project-meta">
+        <div class="project-name">Bill Payment Services Testing — POS Integration</div>
+        <div class="project-desc">Manual testing of bill payment services integrated with POS terminals. Validated payment accuracy, user flow, and system reliability across utility and telecom billers.</div>
+        <div class="project-tags">
+          <span class="ptag ptag-amber">POS Testing</span>
+          <span class="ptag ptag-blue">Manual Testing</span>
+          <span class="ptag ptag-green">Fintech</span>
+          <span class="ptag ptag-purple">UAT</span>
+          <span class="ptag ptag-red">Regression Testing</span>
+        </div>
+      </div>
+      <div class="project-chevron">&#8250;</div>
+    </div>
+    <div class="project-body">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num num-amber">Multi</div><div class="lbl">Biller Types</div></div>
+        <div class="stat-card"><div class="num num-green">UAT</div><div class="lbl">Executed</div></div>
+        <div class="stat-card"><div class="num num-blue">POS</div><div class="lbl">Integration</div></div>
+        <div class="stat-card"><div class="num num-purple">Full</div><div class="lbl">Regression</div></div>
+      </div>
+
+      <div class="findings-title">Key Testing Activities</div>
+      <div class="two-col">
+        <div class="col-box">
+          <div class="col-box-title" style="color:var(--amber)">Functional Testing</div>
+          <ul>
+            <li>Bill inquiry and validation flow</li>
+            <li>Payment processing and confirmation</li>
+            <li>Receipt generation validation</li>
+            <li>Error handling and edge cases</li>
+            <li>Multiple biller types (electricity, telecom)</li>
+          </ul>
+        </div>
+        <div class="col-box">
+          <div class="col-box-title" style="color:var(--blue)">Integration &amp; UAT</div>
+          <ul>
+            <li>POS terminal integration verification</li>
+            <li>Regression testing on existing POS features</li>
+            <li>UAT with business stakeholders</li>
+            <li>Bug tracking and retest verification</li>
+            <li>Business requirements validation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="findings-title" style="margin-top:22px">Biller Types Tested</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+        <span class="ptag ptag-amber" style="padding:6px 14px;font-size:0.75rem">Electricity</span>
+        <span class="ptag ptag-blue"  style="padding:6px 14px;font-size:0.75rem">Telecom</span>
+        <span class="ptag ptag-green" style="padding:6px 14px;font-size:0.75rem">Utility Bills</span>
+        <span class="ptag ptag-purple"style="padding:6px 14px;font-size:0.75rem">Service Charges</span>
+      </div>
+
+      <div class="findings-title" style="margin-top:22px">Deliverables</div>
+      <div class="deliverables">
+        <div class="deliverable-tag"><span>+</span> Test Case Document</div>
+        <div class="deliverable-tag"><span>+</span> Bug Report (Excel &amp; Jira)</div>
+        <div class="deliverable-tag"><span>+</span> UAT Summary</div>
+        <div class="deliverable-tag"><span>+</span> Regression Test Results</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 3: Railway POS -->
+  <div class="project-card fade-up" id="pc3" style="transition-delay:0.2s">
+    <div class="project-header" onclick="toggleCard('pc3')">
+      <div class="project-icon icon-blue">&#128646;</div>
+      <div class="project-meta">
+        <div class="project-name">POS System Testing — Railway Ticket Booking</div>
+        <div class="project-desc">End-to-end testing of a POS system for railway ticket booking. Validated ticket search, fare calculation, payment, refunds, and printing across multiple POS terminals including offline mode.</div>
+        <div class="project-tags">
+          <span class="ptag ptag-blue">POS Testing</span>
+          <span class="ptag ptag-green">Manual Testing</span>
+          <span class="ptag ptag-amber">UAT</span>
+          <span class="ptag ptag-red">Regression</span>
+          <span class="ptag ptag-purple">Performance</span>
+        </div>
+      </div>
+      <div class="project-chevron">&#8250;</div>
+    </div>
+    <div class="project-body">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num num-blue">E2E</div><div class="lbl">Test Coverage</div></div>
+        <div class="stat-card"><div class="num num-green">Multi</div><div class="lbl">POS Terminals</div></div>
+        <div class="stat-card"><div class="num num-amber">UAT</div><div class="lbl">Executed</div></div>
+        <div class="stat-card"><div class="num num-purple">Offline</div><div class="lbl">Mode Tested</div></div>
+      </div>
+
+      <div class="findings-title">Key Testing Activities</div>
+      <div class="two-col">
+        <div class="col-box">
+          <div class="col-box-title" style="color:var(--blue)">Core Functional Tests</div>
+          <ul>
+            <li>Ticket search and booking flow</li>
+            <li>Fare calculation accuracy</li>
+            <li>Payment processing validation</li>
+            <li>Refund processing verification</li>
+            <li>Ticket printing and validation</li>
+          </ul>
+        </div>
+        <div class="col-box">
+          <div class="col-box-title" style="color:var(--purple)">Scenarios &amp; Edge Cases</div>
+          <ul>
+            <li>Peak hours load behaviour</li>
+            <li>Offline mode functionality</li>
+            <li>Performance bottleneck identification</li>
+            <li>Usability issue reporting</li>
+            <li>Developer collaboration and retest</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="findings-title" style="margin-top:22px">Testing Scenarios Matrix</div>
+      <table class="findings-table">
+        <thead><tr><th>Feature</th><th>Normal Mode</th><th>Peak Hours</th><th>Offline Mode</th></tr></thead>
+        <tbody>
+          <tr><td>Ticket Search</td><td><span class="status-fixed">PASS</span></td><td><span class="status-fixed">PASS</span></td><td><span class="status-fixed">PASS</span></td></tr>
+          <tr><td>Fare Calculation</td><td><span class="status-fixed">PASS</span></td><td><span class="status-fixed">PASS</span></td><td><span class="status-open">N/A</span></td></tr>
+          <tr><td>Payment Processing</td><td><span class="status-fixed">PASS</span></td><td><span class="status-fixed">PASS</span></td><td><span class="status-open">N/A</span></td></tr>
+          <tr><td>Ticket Printing</td><td><span class="status-fixed">PASS</span></td><td><span class="status-fixed">PASS</span></td><td><span class="status-fixed">PASS</span></td></tr>
+          <tr><td>Refund Processing</td><td><span class="status-fixed">PASS</span></td><td><span class="status-open">SLOW</span></td><td><span class="status-open">N/A</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="findings-title" style="margin-top:22px">Deliverables</div>
+      <div class="deliverables">
+        <div class="deliverable-tag"><span>+</span> Test Cases Document</div>
+        <div class="deliverable-tag"><span>+</span> Bug Report Log</div>
+        <div class="deliverable-tag"><span>+</span> UAT Execution Results</div>
+        <div class="deliverable-tag"><span>+</span> Performance Notes</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Capabilities</div>
+  <h2 class="section-title">Skills &amp; Tools</h2>
+  <div class="skills-grid">
+    <div class="skill-card fade-up">
+      <div class="skill-icon">&#128299;</div>
+      <div class="skill-name">API Testing</div>
+      <div class="skill-desc">REST API testing across all HTTP methods. Structured happy path, negative, and boundary test cases with dynamic Postman automation.</div>
+      <div class="skill-bars">
+        <div class="skill-bar-row"><span class="skill-bar-label">Postman</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">REST APIs</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Automation</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-card fade-up" style="transition-delay:0.08s">
+      <div class="skill-icon">&#128241;</div>
+      <div class="skill-name">POS System Testing</div>
+      <div class="skill-desc">Hands-on POS testing across bill payment and ticketing systems. Transaction validation, offline mode, and integration testing.</div>
+      <div class="skill-bars">
+        <div class="skill-bar-row"><span class="skill-bar-label">POS Testing</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Integration</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:87%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">UAT</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-card fade-up" style="transition-delay:0.16s">
+      <div class="skill-icon">&#128203;</div>
+      <div class="skill-name">Test Management</div>
+      <div class="skill-desc">Zephyr Scale test case management, structured test cycles, and coverage reporting across multiple user stories and projects.</div>
+      <div class="skill-bars">
+        <div class="skill-bar-row"><span class="skill-bar-label">Zephyr Scale</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Jira</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Test Design</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-card fade-up" style="transition-delay:0.12s">
+      <div class="skill-icon">&#128027;</div>
+      <div class="skill-name">Bug Reporting</div>
+      <div class="skill-desc">Clear, actionable defect reports with root cause analysis, severity classification, reproduction steps, and fix verification across Jira and Excel.</div>
+      <div class="skill-bars">
+        <div class="skill-bar-row"><span class="skill-bar-label">Root Cause</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:93%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Jira</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Excel</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-card fade-up" style="transition-delay:0.2s">
+      <div class="skill-icon">&#9881;&#65039;</div>
+      <div class="skill-name">Fintech &amp; Payments Domain</div>
+      <div class="skill-desc">QA experience with payment services, bill processing, POS integration, and financial transaction systems in the fintech domain.</div>
+      <div class="skill-bars">
+        <div class="skill-bar-row"><span class="skill-bar-label">Payments</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Fintech QA</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Payments</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:87%"></div></div></div>
+      </div>
+    </div>
+    <div class="skill-card fade-up" style="transition-delay:0.24s">
+      <div class="skill-icon">&#128260;</div>
+      <div class="skill-name">QA Methodologies</div>
+      <div class="skill-desc">V-Model, BDD, boundary value analysis, equivalence partitioning, regression testing, and risk-based testing approaches.</div>
+      <div class="skill-bars">
+        <div class="skill-bar-row"><span class="skill-bar-label">V-Model</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">BDD</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">BVA / EP</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROCESS -->
+<section>
+  <div class="section-label">How I Work</div>
+  <h2 class="section-title">My QA Process</h2>
+  <div class="process-steps">
+    <div class="process-step fade-up"><div class="step-circle">01</div><div class="step-title">Analyse</div><div class="step-desc">Review requirements, identify personas, map user stories</div></div>
+    <div class="process-step fade-up" style="transition-delay:0.1s"><div class="step-circle">02</div><div class="step-title">Design</div><div class="step-desc">Write test cases using BVA, EP, and negative scenarios</div></div>
+    <div class="process-step fade-up" style="transition-delay:0.2s"><div class="step-circle">03</div><div class="step-title">Automate</div><div class="step-desc">Build Postman collections with dynamic chaining</div></div>
+    <div class="process-step fade-up" style="transition-delay:0.3s"><div class="step-circle">04</div><div class="step-title">Execute</div><div class="step-desc">Run cycles, capture results, log defects clearly</div></div>
+    <div class="process-step fade-up" style="transition-delay:0.4s"><div class="step-circle">05</div><div class="step-title">Report</div><div class="step-desc">Deliver bug reports with root cause and severity</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="section-label" style="display:flex;justify-content:center">Let's Work Together</div>
+  <h2 class="section-title" style="margin-bottom:16px">Ready to ship<br><em style="font-style:italic;color:var(--accent);font-family:var(--serif)">bug-free software?</em></h2>
+  <p>I bring structured test thinking, real automation skills, and a developer-friendly approach to every project — from fintech APIs to POS systems.</p>
+  <div class="btn-row" style="justify-content:center">
+    <a href="https://www.upwork.com/freelancers/~01de92459154ad635c" class="btn btn-primary" target="_blank">Hire Me on Upwork</a>
+    <a href="#projects" class="btn btn-outline">See My Work</a>
+  </div>
+</div>
+
+<footer>
+  <div><strong style="color:var(--text)">Yehia Kashef</strong> &nbsp;&middot;&nbsp; QA Engineer</div>
+  <div style="font-family:var(--mono);font-size:0.67rem">API Testing &nbsp;&middot;&nbsp; POS Testing &nbsp;&middot;&nbsp; Postman &nbsp;&middot;&nbsp; Zephyr Scale &nbsp;&middot;&nbsp; Jira</div>
+</footer>
+
+<script>
+function toggleCard(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
